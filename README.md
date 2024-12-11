@@ -1,33 +1,23 @@
 # Meet App  
 
+## **Project Overview**  
+Meet App is a serverless, progressive web application (PWA) built with React. It uses the Google Calendar API to fetch and display upcoming events. The application supports offline functionality, responsive design, and interactive data visualization through charts. The project follows a test-driven development (TDD) approach, ensuring high-quality code and comprehensive test coverage.  
+
+---
+
 ## Table of Contents  
 - [User Stories](#user-stories)  
 - [Scenarios](#scenarios)  
-<!-- - [Installation](#installation)  
-- [Features](#features)  
-- [Contributing](#contributing)   -->
+- [Technical Objectives](#technical-objectives)
+- [Technical Requirements](#technical-requirements)
+- [Testing Strategy](#testing-strategy)
+- [Installation](#installation)  
 
 
-## User Stories  
+---
 
-### **Filter Events by City**  
-*As a user, I should be able to filter events by city, so that I can see a list of events taking place in that city.*  
 
-### **Show/Hide Event Details**  
-*As a user, I should be able to show or hide event details, so that I can view only the information I need without cluttering the screen.*  
-
-### **Specify Number of Events**  
-*As a user, I should be able to specify the number of events displayed, so that I can control how much information I see at once.*  
-
-### **Use the App When Offline**  
-*As a user, I should be able to use the app when offline, so that I can access essential event information even without an internet connection.*  
-
-### **Add an App Shortcut to the Home Screen**  
-*As a user, I should be able to add a shortcut for the app to my home screen, so that I can quickly access it without opening a browser.*  
-
-### **Display Charts Visualizing Event Details**  
-*As a user, I should be able to view charts visualizing event details, so that I can easily understand event trends and statistics.*  
-## User Stories  
+## User Stories as Key Features
 
 ### **Filter Events by City**  
 *As a user, I should be able to filter events by city, so that I can see a list of events taking place in that city.*  
@@ -50,7 +40,7 @@
 ## Scenarios  
 
 <details>  
-  <summary>**Feature: Filter Events By City**</summary>  
+  <summary><b>Feature: Filter Events By City</b></summary>  
 
   #### **Scenario: When user hasn’t searched for a city, show upcoming events from all cities**  
   - **Given:** The user has not entered a city in the search bar  
@@ -72,7 +62,7 @@
 ---
 
 <details>  
-  <summary>**Feature: Show/Hide Event Details**</summary>  
+  <summary><b>Feature: Show/Hide Event Details</b></summary>  
 
   #### **Scenario: An event element is collapsed by default**  
   - **Given:** The user opens the events app  
@@ -94,7 +84,7 @@
 ---
 
 <details>  
-  <summary>**Feature: Specify Number of Events**</summary>  
+  <summary><b>Feature: Specify Number of Events</b></summary>  
 
   #### **Scenario: When user hasn’t specified a number, 32 events are shown by default**  
   - **Given:** The user opens the events app  
@@ -112,7 +102,7 @@
 ---
 
 <details>  
-  <summary>**Feature: Use the App When Offline**</summary>  
+  <summary><b>Feature: Use the App When Offline</b></summary>  
 
   #### **Scenario: Show cached data when there’s no internet connection**  
   - **Given:** The user has previously accessed event data  
@@ -130,7 +120,7 @@
 ---
 
 <details>  
-  <summary>**Feature: Add an App Shortcut to the Home Screen**</summary>  
+  <summary><b>Feature: Add an App Shortcut to the Home Screen</b></summary>  
 
   #### **Scenario: User can install the meet app as a shortcut on their device home screen**  
   - **Given:** The user is using a compatible browser or device  
@@ -143,7 +133,7 @@
 ---
 
 <details>  
-  <summary>**Feature: Display Charts Visualizing Event Details**</summary>  
+  <summary><b>Feature: Display Charts Visualizing Event Details</b></summary>  
 
   #### **Scenario: Show a chart with the number of upcoming events in each city**  
   - **Given:** The user has opened the events app  
@@ -152,4 +142,70 @@
   - **Then:** The app should display a chart showing the number of upcoming events in each city  
 
 </details>  
+
+
+## **Technical Objectives**  
+- **Serverless Architecture:** No backend maintenance, easy scalability, and zero cost for idle time using AWS Lambda.  
+- **Progressive Web App (PWA):** Provides features like offline support, instant loading, push notifications, and "add to home screen" prompts.  
+- **Test-Driven Development (TDD):** Development guided by writing tests before implementation, ensuring robust and reliable code.  
+- **Data Visualization:** Interactive charts provide insights into event details.  
+
+---
+
+## **Technical Requirements**  
+- **Framework:** React  
+- **Serverless Functions:** AWS Lambda for backend API authentication  
+- **API Integration:** Google Calendar API using OAuth2  
+- **Testing:** Jest and React Testing Library with 90%+ test coverage  
+- **PWA Compliance:** Passes Lighthouse’s PWA checklist  
+- **Cross-Browser Compatibility:** Works on Chrome, Firefox, Safari, Edge, Opera, and IE11  
+- **Responsive Design:** Supports screen widths from 320px (mobile) to 1920px (desktop)  
+- **Offline Support:** Service workers enable functionality without an internet connection  
+- **Deployment:** Deployed on GitHub Pages  
+
+---
+
+## **Testing Strategy**  
+- **Unit Tests:** Test React components with mock data.  
+- **Integration Tests:** Validate integration of app components with Google Calendar API.  
+- **End-to-End Tests:** Conduct full flow tests using Puppeteer.  
+- **Coverage Requirement:** Minimum 90% test coverage for all features.  
+
+---
+
+## **Installation**  
+
+Follow these steps to deploy the Meet App:  
+
+### **1. Clone the Repository**  
+Use the following command to clone the repository to your local machine:  
+
+```bash
+git clone https://github.com/yourusername/meet-app.git
+cd meet-app
+ ```
+### **Install Dependencies** 
+Run the following command to install the necessary dependencies:
+```bash 
+npm install
+```
+### **3. Run the App Locally**
+This will launch the app in your default browser at http://localhost:3000.
+
+```bash
+npm start
+```
+### **4. Run Tests**
+```bash
+npm test 
+```
+### **5.Build for Production**
+```bash
+npm run build 
+```
+### **6. Deploy to GitHub Pages**
+Once deployed, the app will be available at https://yourusername.github.io/meet-app/.
+```bash
+npm run build deploy
+```
 
