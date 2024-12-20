@@ -1,11 +1,12 @@
 "use strict";
 
-const { google } = require("googleapis");
+import { google } from "googleapis";
 const calendar = google.calendar("v3");
 const SCOPES = [
   "https://www.googleapis.com/auth/calendar.events.public.readonly",
 ];
-const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = process.env;
+import env from 'node:process'; 
+const { CLIENT_SECRET, CLIENT_ID, CALENDAR_ID } = env;
 const redirect_uris = ["https://meet-sandy.vercel.app/"];
 
 const oAuth2Client = new google.auth.OAuth2(
