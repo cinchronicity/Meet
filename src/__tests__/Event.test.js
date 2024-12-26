@@ -54,23 +54,6 @@ describe("<Event /> component", () => {
       EventComponent.container.querySelector(".eventDetails");
     expect(eventDetails).toBeInTheDocument();
   });
-  //scenario 3- user can collapse an event to hide its details
-  // test("user can collapse event details by clicking 'hide details'", async () => {
-  //   const user = userEvent.setup();
-
-  //   const showDetailsButton = EventComponent.queryByText("Show Details");
-  //   expect(showDetailsButton).toBeInTheDocument();
-  //   await user.click(showDetailsButton);
-  //   const eventDetails = EventComponent.container.querySelector(".eventDetails");
-  //   expect(eventDetails).toBeInTheDocument();
-  //   //Click the hide details button
-  //   const hideDetailsButton = EventComponent.queryByText("Hide Details");
-  //   await user.click(hideDetailsButton);
-  //   //Check if the event details are hidden
-  //   eventDetails = EventComponent.container.querySelector(".eventDetails");
-  //   expect(eventDetails).not.toBeInTheDocument();
-  // });
-
   // Scenario 3 - user can collapse an event to hide its details
   test("user can collapse event details by clicking 'hide details'", async () => {
     const user = userEvent.setup();
