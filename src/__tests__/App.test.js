@@ -22,6 +22,7 @@ describe('<App /> component', () => {
     expect(AppDOM.querySelector('#number-of-events')).toBeInTheDocument();
   });
 });
+
 describe('<App /> integration', () => {
   test('renders a list of events matching the city selected by the user', async () => {
     const user = userEvent.setup();
@@ -54,5 +55,29 @@ describe('<App /> integration', () => {
       expect(event.textContent).toContain("Berlin, Germany");
     });
   });
+  
+  test('User can change the number of events displayed', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+
+    // Given the user has just opened the app
+    // (App is already rendered at this point)
+
+    // When the user changes the value of the “number of events” input field
+    const numberInput = within(AppDOM).getByRole('spinbutton');
+    await user.clear(numberInput);
+    await user.type(numberInput, '{backspace}{backspace}10');
+
+    // Fetch events with the updated number of events
+    const allEvents = await getEvents();
+    const filteredEvents = allEvents.slice(0, 10);
+
+    // Then the number of events in the list will change accordingly
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const eventListItems = within(EventListDOM).queryAllByRole('listitem');
+    expect(eventListItems).toHaveLength(filteredEvents.length);
+  });
+
 });
 

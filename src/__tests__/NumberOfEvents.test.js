@@ -6,12 +6,12 @@ import NumberOfEvents from "../components/NumberOfEvents";
 // FEATURE 3: SPECIFY NUMBER OF EVENTS
 describe("<NumberOfEvents /> component", () => {
   let NumberOfEventsComponent;
-  let updateNumberOfEvents;
+  let setCurrentNOE;
 
   beforeEach(() => {
-    updateNumberOfEvents = jest.fn(); // Create a mock function to pass as a prop to the NumberOfEvents component
+    setCurrentNOE = jest.fn(); // Create a mock function to pass as a prop to the NumberOfEvents component
     NumberOfEventsComponent = render(
-      <NumberOfEvents updateNumberOfEvents={updateNumberOfEvents} />
+      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
     );
   });
 
@@ -33,6 +33,8 @@ describe("<NumberOfEvents /> component", () => {
     const numberInput = NumberOfEventsComponent.queryByRole("spinbutton");
     await user.type(numberInput, "{backspace}{backspace}10");
     expect(numberInput).toHaveValue(10);
-    expect(updateNumberOfEvents).toHaveBeenCalledWith("10");
+    expect(setCurrentNOE).toHaveBeenCalledWith("10");
   });
 });
+
+
