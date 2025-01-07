@@ -26,20 +26,17 @@ const App = () => {
     setAllLocations(extractLocations(allEvents));
   };
 
-
   return (
     <div className="App">
-      <CitySearch 
-      allLocations={allLocations} 
-      setCurrentCity={setCurrentCity}
-       />
-      <EventList 
-      events={events} 
+      <div className="App-header">
+        <NumberOfEvents setCurrentNOE={setCurrentNOE} />
 
-      />
-      <NumberOfEvents
-       setCurrentNOE={setCurrentNOE}
+        <CitySearch
+          allLocations={allLocations}
+          setCurrentCity={setCurrentCity}
         />
+      </div>
+      <EventList events={events} />
     </div>
   );
 };
