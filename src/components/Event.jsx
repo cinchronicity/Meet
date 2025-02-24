@@ -11,7 +11,7 @@ const Event = ({ event }) => {
         <h2>{event.summary}</h2>
         <p>{event.location}</p>
         <p>{event.created}</p>
-      </div>
+      </div> 
       {showDetails ? (
         <div className="eventDetails">
           <p>{event.description}</p>
