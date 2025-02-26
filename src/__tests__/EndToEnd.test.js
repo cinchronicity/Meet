@@ -25,7 +25,7 @@ describe('Feature 2: Show/Hide Event Details', () => {
     await page.goto('http://localhost:5173/'); 
   });
 
-  jest.setTimeout(30000);
+  // jest.setTimeout(30000);
 
   test('Scenario 1: An event element is collapsed by default', async () => {
     await page.waitForSelector('.event');
