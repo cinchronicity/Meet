@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import "../App.css"; 
+import PropTypes from 'prop-types';
 
 
 const Event = ({ event }) => {
@@ -26,5 +27,8 @@ const Event = ({ event }) => {
   );
 }
 
+Event.propTypes = {
+  event: PropTypes.object.isRequired,
+};
 
 export default Event;

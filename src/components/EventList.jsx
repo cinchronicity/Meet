@@ -1,6 +1,7 @@
 import React from 'react';
 import Event from './Event';
 import "../App.css"; 
+import PropTypes from 'prop-types';
 
 
 
@@ -11,6 +12,10 @@ const EventList = ({events}) => {
       </ul>
   );
 }
+
+EventList.propTypes = {
+  events: PropTypes.array.isRequired,
+};
 
 
 export default EventList;

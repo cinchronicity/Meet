@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "../App.css"; 
+import "../App.css";
+import PropTypes from "prop-types";
 
-
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -21,16 +21,28 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
       : [];
     setQuery(value);
     setSuggestions(filteredLocations);
+
+    let infoText;
+    if (filteredLocations.length === 0) {
+      infoText =
+        "We can't find the city you are looking for. Please try another city";
+    } else {
+      infoText = "";
+    }
+    setInfoAlert(infoText);
   };
+
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false); // to hide the list
     setCurrentCity(value);
+    setInfoAlert("")
+
   };
   useEffect(() => {
     setSuggestions(allLocations);
-  }, [`${allLocations}`]); //will compared the string value of allLocations
+  }, [`${allLocations}`]); //will compare the string value of allLocations
 
   return (
     <div id="city-search">
@@ -58,6 +70,12 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
       ) : null}
     </div>
   );
+};
+
+CitySearch.propTypes = {
+  allLocations: PropTypes.array.isRequired,
+  setCurrentCity: PropTypes.func.isRequired,
+  setInfoAlert: PropTypes.func.isRequired,
 };
 
 export default CitySearch;
