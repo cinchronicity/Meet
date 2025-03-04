@@ -1,15 +1,22 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import "../App.css"; 
 
 
-const NumberOfEvents = ({ setCurrentNOE }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const [number, setNumber] = useState(32);
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
+      if (isNaN(value) || value <= 0) {
+      setErrorAlert('Please enter a valid number of events');
+    } else {
+      setErrorAlert('');
+      setCurrentNOE(value);
+    }
     setNumber(value);
-    setCurrentNOE(value);
   };
+
 
   return (
     <div id="number-of-events">
@@ -23,6 +30,11 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
       />
     </div>
   );
+};
+
+NumberOfEvents.propTypes = {
+  setCurrentNOE: PropTypes.func.isRequired,
+  setErrorAlert: PropTypes.func.isRequired,
 };
 
 export default NumberOfEvents;
