@@ -1,5 +1,5 @@
 //getEvents fn which will return MockData of all the events
-
+import NProgress from "nprogress";
 import mockData from "./mock-data";
 /**
  * @param {*} events:
@@ -41,11 +41,11 @@ export const getEvents = async () => {
   if (window.location.href.startsWith("http://localhost")) {
     return mockData;
   }
-  //must be above const token
+  //Access local storage when offline -must be above const token
   if (!navigator.onLine) {
     const events = localStorage.getItem("lastEvents");
     NProgress.done();
-    return events?JSON.parse(events):[];
+    return events ? JSON.parse(events) : [];
   }
 
   const token = await getAccessToken();
@@ -56,13 +56,13 @@ export const getEvents = async () => {
       "https://8ols13j5jl.execute-api.us-west-2.amazonaws.com/dev/api/get-events" +
       "/" +
       token;
-      const response = await fetch(url);
-      const result = await response.json();
-      if (result) {
-        NProgress.done();
-        localStorage.setItem("lastEvents", JSON.stringify(result.events));
-        return result.events;
-      } else return null;
+    const response = await fetch(url);
+    const result = await response.json();
+    if (result) {
+      NProgress.done();
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
+      return result.events;
+    } else return null;
   }
 };
 
