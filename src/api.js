@@ -1,7 +1,6 @@
 //getEvents fn which will return MockData of all the events
 
 import mockData from "./mock-data";
-import NProgress from 'nprogress';
 /**
  * @param {*} events:
  * This function takes an events array, then uses map to create a new array with only locations.
