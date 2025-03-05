@@ -17,12 +17,12 @@ const App = () => {
   const [warningAlert, setWarningAlert] = useState("");  
 
   useEffect(() => {
-    fetchData();
     if (navigator.onLine) {
       setWarningAlert("");
     } else {
       setWarningAlert("You are offline. Displayed list may not be up-to-date.");
     }
+    fetchData();
   }, [currentCity, currentNOE]);
 
   const fetchData = async () => {
