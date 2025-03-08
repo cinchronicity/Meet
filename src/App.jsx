@@ -5,27 +5,19 @@ import CitySearch from "./components/CitySearch";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { getEvents, extractLocations } from "./api";
 import { useEffect, useState } from "react";
-import { InfoAlert, ErrorAlert, WarningAlert} from "./components/Alert";
+import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
+import CityEventsChart from "./components/CityEventsChart";
 
 const App = () => {
   const [events, setEvents] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
   const [allLocations, setAllLocations] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
-  const [infoAlert, setInfoAlert] = useState(""); 
-  const [errorAlert, setErrorAlert] = useState(""); 
-  const [warningAlert, setWarningAlert] = useState("");  
+  const [infoAlert, setInfoAlert] = useState("");
+  const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
 
-  useEffect(() => {
-    if (navigator.onLine) {
-      setWarningAlert("");
-    } else {
-      setWarningAlert("You are offline. Displayed list may not be up-to-date.");
-    }
-    fetchData();
-  }, [currentCity, currentNOE]);
-
-  const fetchData = async () => {
+  const fetchData = React.useCallback(async () => {
     try {
       const allEvents = await getEvents();
       const filteredEvents =
@@ -37,28 +29,53 @@ const App = () => {
     } catch (error) {
       setErrorAlert("Failed to fetch events. Please try again later.");
     }
-  }; // new catch block to handle network or server errors
+  }, [currentCity, currentNOE]);
+
+  useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("You are offline. Displayed list may not be up-to-date.");
+    }
+    fetchData();
+  }, [fetchData]); // Added fetchData as a dependency
 
   return (
     <div className="App">
+      <h1>Meet App</h1>
+      <h4>Choose your nearest city and see what&apos;s happening there!</h4>
       <div className="App-header">
         <div className="alerts-container">
-          {infoAlert.length ? <InfoAlert text={infoAlert} /> : null} 
+          {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
           {errorAlert.length > 0 && <ErrorAlert text={errorAlert} />}
           {warningAlert.length > 0 && <WarningAlert text={warningAlert} />}
-
         </div>
-        <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert}/>
-
+        <NumberOfEvents
+          setCurrentNOE={setCurrentNOE}
+          setErrorAlert={setErrorAlert}
+        />
         <CitySearch
           allLocations={allLocations}
           setCurrentCity={setCurrentCity}
           setInfoAlert={setInfoAlert}
         />
       </div>
+      <CityEventsChart events={events} allLocations={allLocations} />
+
       <EventList events={events} />
     </div>
   );
 };
+
+// import PropTypes from "prop-types";
+// App.propTypes = {
+//   events: PropTypes.array.isRequired,
+//   currentNOE: PropTypes.number.isRequired,
+//   allLocations: PropTypes.array.isRequired,
+//   currentCity: PropTypes.string.isRequired,
+//   infoAlert: PropTypes.string.isRequired,
+//   errorAlert: PropTypes.string.isRequired,
+//   warningAlert: PropTypes.string.isRequired,
+// };
 
 export default App;
