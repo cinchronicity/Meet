@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   ScatterChart,
   Scatter,
@@ -13,20 +13,18 @@ import {
 const CityEventsChart = ({ allLocations, events }) => {
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    setData(getData());
-  }, [`${events}`]);
-
-  const getData = () => {
+  const getData = useCallback(() => {
     const data = allLocations.map((location) => {
-      const count = events.filter(
-        (event) => event.location === location
-      ).length;
+      const count = events.filter((event) => event.location === location).length;
       const city = location.split((/, | - /))[0];
       return { city, count };
     });
     return data;
-  };
+  }, [allLocations, events]);
+
+  useEffect(() => {
+    setData(getData());
+  }, [getData]);
 
   return (
     <ResponsiveContainer width="99%" height={400}>
