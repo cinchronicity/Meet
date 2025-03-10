@@ -5,6 +5,8 @@ module.exports = {
   },
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Mock CSS imports
+    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.js',
+
   },
   moduleFileExtensions: ['js', 'jsx'],
   setupFilesAfterEnv: ['<rootDir>/setupTests.js'], // Path to the setup file
