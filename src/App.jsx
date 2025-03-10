@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
 import CityEventsChart from "./components/CityEventsChart";
 import EventGenresChart from "./components/EventGenresChart";
+import meetLogo from "./assets/Meet-logo.svg";
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -43,8 +44,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Meet App</h1>
-      <h4>Choose your nearest city and see what&apos;s happening there!</h4>
+      <div className="meet-header">
+        <img src={meetLogo} alt="Meet App Logo" className="meet-logo" />
+      </div>
+      <h4>Find events happening near you!</h4>
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length > 0 && <ErrorAlert text={errorAlert} />}
@@ -71,15 +74,16 @@ const App = () => {
   );
 };
 
-// import PropTypes from "prop-types";
-// App.propTypes = {
-//   events: PropTypes.array.isRequired,
-//   currentNOE: PropTypes.number.isRequired,
-//   allLocations: PropTypes.array.isRequired,
-//   currentCity: PropTypes.string.isRequired,
-//   infoAlert: PropTypes.string.isRequired,
-//   errorAlert: PropTypes.string.isRequired,
-//   warningAlert: PropTypes.string.isRequired,
-// };
+import PropTypes from "prop-types";
+App.propTypes = {
+  events: PropTypes.array.isRequired,
+  currentNOE: PropTypes.number.isRequired,
+  allLocations: PropTypes.array.isRequired,
+  currentCity: PropTypes.string.isRequired,
+  infoAlert: PropTypes.string.isRequired,
+  errorAlert: PropTypes.string.isRequired,
+  warningAlert: PropTypes.string.isRequired,
+  fetchData: PropTypes.func.isRequired,
+};
 
 export default App;

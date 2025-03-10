@@ -45,7 +45,7 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   }, [`${allLocations}`]); //will compare the string value of allLocations
 
   return (
-    <div id="city-search">
+    <div id="city-search" >
       <input
         type="text"
         className="city"
@@ -58,8 +58,9 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         <ul className="suggestions">
           {suggestions.map((suggestion) => {
             return (
-              <li onClick={handleItemClicked} key={suggestion}>
+              <li onClick={handleItemClicked} key={suggestion} className="suggestion-item">
                 {suggestion}
+                
               </li>
             );
           })}

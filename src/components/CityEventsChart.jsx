@@ -15,8 +15,10 @@ const CityEventsChart = ({ allLocations, events }) => {
 
   const getData = useCallback(() => {
     const data = allLocations.map((location) => {
-      const count = events.filter((event) => event.location === location).length;
-      const city = location.split((/, | - /))[0];
+      const count = events.filter(
+        (event) => event.location === location
+      ).length;
+      const city = location.split(/, | - /)[0];
       return { city, count };
     });
     return data;
@@ -28,6 +30,7 @@ const CityEventsChart = ({ allLocations, events }) => {
 
   return (
     <ResponsiveContainer width="99%" height={400}>
+      <p>Events by City</p>
       <ScatterChart
         margin={{
           top: 20,
@@ -47,7 +50,7 @@ const CityEventsChart = ({ allLocations, events }) => {
         />
         <YAxis type="number" dataKey="count" name="Number of events" />
         <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-        <Scatter name="A school" data={data} fill="#8884d8" />
+        <Scatter name="Events" data={data} fill="#8884d8" />
       </ScatterChart>
     </ResponsiveContainer>
   );
