@@ -7,6 +7,7 @@ import { getEvents, extractLocations } from "./api";
 import { useEffect, useState } from "react";
 import { InfoAlert, ErrorAlert, WarningAlert } from "./components/Alert";
 import CityEventsChart from "./components/CityEventsChart";
+import EventGenresChart from "./components/EventGenresChart";
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -44,12 +45,12 @@ const App = () => {
     <div className="App">
       <h1>Meet App</h1>
       <h4>Choose your nearest city and see what&apos;s happening there!</h4>
-      <div className="App-header">
-        <div className="alerts-container">
-          {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
-          {errorAlert.length > 0 && <ErrorAlert text={errorAlert} />}
-          {warningAlert.length > 0 && <WarningAlert text={warningAlert} />}
-        </div>
+      <div className="alerts-container">
+        {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
+        {errorAlert.length > 0 && <ErrorAlert text={errorAlert} />}
+        {warningAlert.length > 0 && <WarningAlert text={warningAlert} />}
+      </div>
+      <div className="search-container">
         <NumberOfEvents
           setCurrentNOE={setCurrentNOE}
           setErrorAlert={setErrorAlert}
@@ -60,8 +61,11 @@ const App = () => {
           setInfoAlert={setInfoAlert}
         />
       </div>
-      <CityEventsChart events={events} allLocations={allLocations} />
 
+      <div className="charts-container">
+        <EventGenresChart events={events} />
+        <CityEventsChart events={events} allLocations={allLocations} />
+      </div>
       <EventList events={events} />
     </div>
   );
