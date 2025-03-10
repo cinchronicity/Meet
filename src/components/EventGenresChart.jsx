@@ -7,6 +7,8 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import PropTypes from "prop-types";
+
 
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
@@ -15,8 +17,7 @@ const EventGenresChart = ({ events }) => {
     []
   ); //useMemo is used to store the genres array in memory so its not recalculated every time the component re-renders
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28DFF"];
-  // const COLORS = ['#fbc353', '#d81e5b', '#7E3C7E', '#ea4752', '#861b47'];
+  const COLORS = ["#03befc", "#00C49F", "#FFBB28", "#FF8042", "#A28DFF"];
 
   const getData = useCallback(() => {
     const data = genres.map((genre) => {
@@ -41,14 +42,14 @@ const EventGenresChart = ({ events }) => {
     index,
   }) => {
     const RADIAN = Math.PI / 180;
-    const radius = outerRadius;
+    const radius = outerRadius+20;
     const x = cx + radius * Math.cos(-midAngle * RADIAN) * 1.07;
     const y = cy + radius * Math.sin(-midAngle * RADIAN) * 1.07;
     return percent ? (
       <text
         x={x}
         y={y}
-        fill={COLORS[index % COLORS.length]} // Use matching color
+        fill={COLORS[index % COLORS.length]} 
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
@@ -60,7 +61,7 @@ const EventGenresChart = ({ events }) => {
   return (
     <ResponsiveContainer width="99%" height={400}>
       <p>Topic&apos;s Available</p>
-      <PieChart margin={{ left: 10, right: 10 }}>
+      <PieChart margin={{ left: 20, right: 20 }}>
         <Tooltip />
         <Pie
           data={data}
@@ -74,8 +75,8 @@ const EventGenresChart = ({ events }) => {
             <Cell
               key={`cell-${index}`}
               fill={COLORS[index % COLORS.length]}
-              stroke="#fff" // Add stroke color
-              strokeWidth={2} // Add stroke width
+              stroke="#fff" 
+              strokeWidth={2} 
             />
           ))}
         </Pie>
@@ -84,9 +85,10 @@ const EventGenresChart = ({ events }) => {
           layout="horizontal"
           verticalAlign="bottom"
           align="center"
+          wrapperStyle={{ paddingTop: "20px" }} 
           formatter={(value) => (
             <span
-              style={{ color: "#eee", fontSize: "11px", fontWeight: "300" }}
+              style={{ color: "#000", fontSize: "11px", fontWeight: "300" }}
             >
               {value}
             </span>
@@ -97,4 +99,8 @@ const EventGenresChart = ({ events }) => {
   );
 };
 
+
+EventGenresChart.propTypes = {
+  events: PropTypes.array.isRequired,
+};
 export default EventGenresChart;
