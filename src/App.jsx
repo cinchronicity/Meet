@@ -74,16 +74,6 @@ const App = () => {
   );
 };
 
-import PropTypes from "prop-types";
-App.propTypes = {
-  events: PropTypes.array.isRequired,
-  currentNOE: PropTypes.number.isRequired,
-  allLocations: PropTypes.array.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  infoAlert: PropTypes.string.isRequired,
-  errorAlert: PropTypes.string.isRequired,
-  warningAlert: PropTypes.string.isRequired,
-  fetchData: PropTypes.func.isRequired,
-};
+//app.jsx is the root component (has no children) so proptypes not required 
 
 export default App;
