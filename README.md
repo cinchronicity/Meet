@@ -206,7 +206,7 @@ npm start
 npm test
 ```
 
-## **🌐 Deployment**
+## 🌐 **Deployment**
 The app is configured to be deployed using Vercel. 
 
 Automatic Deployment: Push to the main branch triggers automatic deployment
