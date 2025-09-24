@@ -11,13 +11,14 @@ Meet App is a serverless, progressive web application (PWA) built with React. It
 - [Technical Objectives](#technical-objectives)
 - [Technical Requirements](#technical-requirements)
 - [Testing Strategy](#testing-strategy)
-- [Installation](#installation)  
+- [Installation](#installation)
+- [Deployment](#deployment)
 
 
 ---
 
 
-## User Stories as Key Features
+## **User Stories**
 
 ### **Filter Events by City**  
 *As a user, I should be able to filter events by city, so that I can see a list of events taking place in that city.*  
@@ -153,15 +154,15 @@ Meet App is a serverless, progressive web application (PWA) built with React. It
 ---
 
 ## **Technical Requirements**  
-- **Framework:** React  
+- **Framework:** React: UI development
 - **Serverless Functions:** AWS Lambda for backend API authentication  
 - **API Integration:** Google Calendar API using OAuth2  
 - **Testing:** Jest and React Testing Library with 90%+ test coverage  
 - **PWA Compliance:** Passes Lighthouse’s PWA checklist  
 - **Cross-Browser Compatibility:** Works on Chrome, Firefox, Safari, Edge, Opera, and IE11  
-- **Responsive Design:** Supports screen widths from 320px (mobile) to 1920px (desktop)  
+- **Responsive Design:** Supports screen widths from 320px (mobile) to 1920px (desktop) - **Recharts / D3.js** – Data visualization  
 - **Offline Support:** Service workers enable functionality without an internet connection  
-- **Deployment:** Deployed on GitHub Pages  
+- **Deployment:** Deployed using Vercel 
 
 ---
 
@@ -172,6 +173,11 @@ Meet App is a serverless, progressive web application (PWA) built with React. It
 - **Coverage Requirement:** Minimum 90% test coverage for all features.  
 
 ---
+
+### Prerequisites
+- **Node.js** (v14 or later)  
+- **npm** (v6 or later)  
+- A Google API project with **Calendar API enabled** 
 
 ## **Installation**  
 
@@ -185,7 +191,7 @@ git clone https://github.com/yourusername/meet-app.git
 cd meet-app
  ```
 ### **Install Dependencies** 
-Run the following command to install the necessary dependencies:
+### **2 Run the following command to install the necessary dependencies:
 ```bash 
 npm install
 ```
@@ -195,17 +201,17 @@ This will launch the app in your default browser at http://localhost:3000.
 ```bash
 npm start
 ```
-### **4. Run Tests**
-```bash
-npm test 
-```
-### **5.Build for Production**
-```bash
-npm run build 
-```
-### **6. Deploy to GitHub Pages**
-Once deployed, the app will be available at https://yourusername.github.io/meet-app/.
-```bash
-npm run build deploy
+### **3. Run tests with:**
+```bash 
+npm test
 ```
 
+## **🌐 Deployment**
+The app is configured to be deployed using Vercel. 
+
+Automatic Deployment: Push to the main branch triggers automatic deployment
+Manual Deployment:
+```bash
+npm run build
+```
+👉 Live Demo --> https://meet-sandy.vercel.app/
